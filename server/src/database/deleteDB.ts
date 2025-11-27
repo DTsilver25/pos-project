@@ -6,25 +6,25 @@ import Database from "../config/db.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const initDB = async () => {
+const deleteDB = async () => {
   const db = Database.getInstance();
   try {
-    const schemaPath = path.join(__dirname, "queries/schema.sql");
+    const schemaPath = path.join(__dirname, "queries/dropSchema.sql");
     const sql = fs.readFileSync(schemaPath, "utf-8");
     console.log("Conectando a la base de Datos...");
     const client = await db.startConnection();
 
-    console.log("Levantando tablas...");
+    console.log("Eliminando las tablas...");
     await client.query(sql);
 
-    console.log("Tablas creadas");
+    console.log("Tablas eliminadas correctamente");
     client.release();
   } catch (error) {
     console.log(error);
   } finally {
-    await db.closeConnection();
     console.log("Conexion cerrada");
+    await db.closeConnection();
   }
 };
 
-initDB();
+deleteDB();
