@@ -1,1 +1,17 @@
+# --- TypeScript ---
+# Carpeta de salida de compilación (definida en "outDir" de tsconfig)
+dist/
+build/
+out/
+
+# Archivos de caché de compilación incremental (si usas esta opción)
+*.tsbuildinfo
+
+# --- Logs y Depuración ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+node_modules/.env
 .env
+node_modules/
