@@ -3,10 +3,12 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import { Pool } from "pg";
+import path from "path";
 import { configDotenv } from "dotenv";
 const port = 3000;
 
-configDotenv();
+configDotenv({ path: path.resolve("../.env") });
+
 const pool = new Pool({
   user: process.env.POSTGRES_USER,
   host: "127.0.0.1",
