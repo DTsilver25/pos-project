@@ -3,7 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
-import UserRouter from "./routes/user.ts"
+import UserRouter from "./routes/user.ts";
 import { configDotenv } from "dotenv";
 const port = 3000;
 
@@ -24,11 +24,7 @@ app.use(
   })
 );
 
-app.use("/api/users", UserRouter)
-
-app.get("/ping", async (req, res) => {
-  res.send("pong");
-});
+app.use("/api/users", UserRouter);
 
 app.listen(port, () => {
   console.log(`Listening in port ${port}`);
