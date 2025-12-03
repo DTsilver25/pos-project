@@ -12,7 +12,7 @@ class Database {
       user: process.env.POSTGRES_USER,
       host: "127.0.0.1",
       password: process.env.POSTGRES_PASSWORD,
-      port: 5432,
+      port: Number(process.env.DB_PORT),
       database: process.env.POSTGRES_DB,
     });
   }
