@@ -1,10 +1,9 @@
 import { Router } from "express";
-import getProducts from "../controllers/products/get.ts";
-import createProduct from "../controllers/products/post.ts";
-import editProduct from "../controllers/products/put.ts";
 import createSale from "../controllers/sales/post.ts";
+import getSales from "../controllers/sales/get.ts";
 
 const router = Router();
 
 router.post("/create", createSale);
+router.get("/", getSales);
 export default router;
