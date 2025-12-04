@@ -64,7 +64,7 @@
                 class="hover:bg-blue-50 transition-colors duration-150 cursor-pointer"
               >
                 <td class="px-6 py-4 text-slate-700 font-medium">
-                  {{ item.nombre }}
+                  {{ item.paymentMethod }}
                 </td>
                 <td class="px-6 py-4 text-right">
                   <span
@@ -167,8 +167,10 @@
 <script lang="ts" setup>
 import { useAuthStore } from '@/modules/auth/stores/auth.store'
 import router from '@/router'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { toast } from 'vue3-toastify'
+import { getSales } from '../actions/getSales'
+import type { Sale } from '../interfaces/sale'
 
 const authStore = useAuthStore()
 
@@ -181,20 +183,7 @@ const onLogout = () => {
   router.replace('/auth')
 }
 
-const data = ref([
-  { id: 1, nombre: 'Juan Pérez', total: 1250.5 },
-  { id: 2, nombre: 'María García', total: 2340.0 },
-  { id: 3, nombre: 'Carlos López', total: 890.75 },
-  { id: 4, nombre: 'Ana Martínez', total: 3450.25 },
-  { id: 5, nombre: 'Luis Rodríguez', total: 1670.8 },
-  { id: 6, nombre: 'Carmen Sánchez', total: 2100.0 },
-  { id: 7, nombre: 'Pedro González', total: 950.5 },
-  { id: 8, nombre: 'Laura Fernández', total: 3200.9 },
-  { id: 9, nombre: 'Diego Torres', total: 1500.0 },
-  { id: 10, nombre: 'Sofia Ramírez', total: 2780.4 },
-  { id: 11, nombre: 'Miguel Castro', total: 1890.6 },
-  { id: 12, nombre: 'Isabel Vargas', total: 4100.25 },
-])
+const data = ref<Sale[]>([])
 
 const totalPages = computed(() => {
   return Math.ceil(data.value.length / itemsPerPage.value)
@@ -227,4 +216,10 @@ const handleNextPage = () => {
 const setCurrentPage = (page) => {
   currentPage.value = page
 }
+
+onMounted(async () => {
+  const { sales } = await getSales()
+  data.value = sales
+  console.log(data.value)
+})
 </script>
