@@ -1,0 +1,1 @@
+SELECT * FROM sales WHERE id = $1

@@ -2,10 +2,9 @@ import { Router } from "express";
 import getProducts from "../controllers/products/get.ts";
 import createProduct from "../controllers/products/post.ts";
 import editProduct from "../controllers/products/put.ts";
+import createSale from "../controllers/sales/post.ts";
 
 const router = Router();
 
-router.get("/", getProducts);
-router.post("/create", createProduct);
-router.put("/edit/:id", editProduct);
+router.post("/create", createSale);
 export default router;

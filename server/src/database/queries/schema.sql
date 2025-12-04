@@ -38,7 +38,6 @@ CREATE TABLE IF NOT EXISTS sale_details (
     sale_id INTEGER REFERENCES sales (id) ON DELETE CASCADE,
     product_id INTEGER REFERENCES products (id),
     quantity INTEGER NOT NULL,
-    unit_price DECIMAL(10, 2) NOT NULL, -- Importante guardar el precio histórico
     subtotal DECIMAL(10, 2) NOT NULL
 );
 
