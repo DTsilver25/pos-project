@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 
+// Trae todos los productos de la base de datos
 const getProducts = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   try {

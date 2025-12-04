@@ -3,6 +3,7 @@ import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 import { hashPassword } from "../../helpers.ts/hashPassword.ts";
 
+// Edita un usuario de la base de datos
 const editUser = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   const { id } = req.params;

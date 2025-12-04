@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 
+// Crea una venta con datos del punto de venta
 const createSale = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   try {

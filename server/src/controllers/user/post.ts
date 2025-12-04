@@ -3,16 +3,11 @@ import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 import { hashPassword } from "../../helpers.ts/hashPassword.ts";
 
+// Crea un usuario en la base de datos con informacion proporcionada en formato JSON
 const createUsers = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   try {
     const { username, password, role } = req.body;
-    if (!username || !password || !role) {
-      res
-        .send("Debe especificar un nombre de usuario y contraseña")
-        .sendStatus(403);
-      return;
-    }
     const client = await db.startConnection();
     const sql = readSql("../database/queries/user/createUser.sql");
     const hashedPassword = await hashPassword(password);
