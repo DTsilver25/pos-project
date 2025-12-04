@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 
+// Elimina un usuario de la base de datos y en caso de error envia una respuesta
 const deleteUser = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   const { id } = req.params;

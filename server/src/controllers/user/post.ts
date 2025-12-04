@@ -3,6 +3,7 @@ import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 import { hashPassword } from "../../helpers.ts/hashPassword.ts";
 
+// Crea un usuario en la base de datos con informacion proporcionada en formato JSON
 const createUsers = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   try {

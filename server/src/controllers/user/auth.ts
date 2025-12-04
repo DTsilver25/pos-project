@@ -3,6 +3,9 @@ import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 import bcrypt from "bcrypt";
 
+// Verifica las credenciales de un usuario (nombre de usuario y contraseña)
+// en caso de que no sea valida envia un 404 de usuario no encontrado
+
 const verifyUser = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   const { username, password } = req.body;

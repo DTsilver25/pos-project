@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 
+// Crea un producto en la base de datos con informacion proporcionada en el body en JSON
 const createProduct = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   const { name, price, stock, description } = req.body;

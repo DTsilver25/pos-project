@@ -4,6 +4,8 @@ import path from "path";
 
 configDotenv({ path: path.resolve(process.cwd(), "../.env") });
 
+// Inicializa la base de datos y define los metodos que permiten interactuar con ella
+// (Cerrar la conexion, iniciar la conexion)
 class Database {
   private static instance: Database;
   private pool: Pool;
