@@ -4,28 +4,28 @@ import { useAuthStore } from '../stores/auth.store'
 import { useToast } from 'vue-toastification'
 
 const authStore = useAuthStore()
-const emailInputRef = ref<HTMLInputElement | null>(null)
+const usernameInputRef = ref<HTMLInputElement | null>(null)
 const passwordInputRef = ref<HTMLInputElement | null>(null)
 const toast = useToast()
 
 const myForm = reactive({
-  email: '',
+  username: '',
   password: '',
-  rememberMe: false,
 })
+
 const onLogin = async () => {
-  if (myForm.email === '') {
-    return emailInputRef.value?.focus()
+  if (myForm.username === '') {
+    return usernameInputRef.value?.focus()
   }
   if (myForm.password.length < 6) {
     return passwordInputRef.value?.focus()
   }
-  if (myForm.email) {
-    localStorage.setItem('email', myForm.email)
+  if (myForm.username) {
+    localStorage.setItem('username', myForm.username)
   } else {
     localStorage.removeItem('email')
   }
-  const ok = await authStore.login(myForm.email, myForm.password)
+  const ok = await authStore.login(myForm.username, myForm.password)
   if (ok) return
   toast.error('Usuario/Contraseña no son correctos')
 }
@@ -33,8 +33,7 @@ const onLogin = async () => {
 watchEffect(() => {
   const email = localStorage.getItem('email')
   if (email) {
-    myForm.email = email
-    myForm.rememberMe = true
+    myForm.username = email
   }
 })
 </script>
@@ -50,7 +49,7 @@ watchEffect(() => {
         type="text"
         id="email"
         name="email"
-        v-model="myForm.email"
+        v-model="myForm.username"
         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
         autocomplete="off"
       />
@@ -67,21 +66,6 @@ watchEffect(() => {
         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
         autocomplete="off"
       />
-    </div>
-    <!-- Remember Me Checkbox -->
-    <div class="mb-4 flex items-center">
-      <input
-        type="checkbox"
-        v-model="myForm.rememberMe"
-        id="remember"
-        name="remember"
-        class="text-blue-500"
-      />
-      <label for="remember" class="text-gray-600 ml-2">Recordar Usuario</label>
-    </div>
-    <!-- Forgot Password Link -->
-    <div class="mb-6 text-blue-500">
-      <a href="#" class="hover:underline">¿Olvidaste la contrasña?</a>
     </div>
     <!-- Login Button -->
     <button

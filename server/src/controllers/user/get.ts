@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import Database from "../../config/db.ts";
 import readSql from "../../helpers.ts/readSql.ts";
 
-const getUsers = async (req: Request, res: Response) => {
+const checkAuth = async (req: Request, res: Response) => {
   const db = Database.getInstance();
   try {
     const client = await db.startConnection();
@@ -16,4 +16,4 @@ const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-export default getUsers;
+export default checkAuth;

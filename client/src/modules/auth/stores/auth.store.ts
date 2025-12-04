@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = authResponse.user
       token.value = authResponse.token
       return true
-    } catch (error) {
+    } catch {
       logout()
       return false
     }

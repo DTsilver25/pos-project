@@ -18,7 +18,7 @@ export const loginAction = async (
   password: string,
 ): Promise<LoginError | LoginSuccess> => {
   try {
-    const { data } = await api.post<LoginResponse>('/auth/login', {
+    const { data } = await api.post<LoginResponse>('/api/auth', {
       email,
       password,
     })

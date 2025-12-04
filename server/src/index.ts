@@ -6,6 +6,7 @@ import path from "path";
 import UserRouter from "./routes/user.ts";
 import ProductRouter from "./routes/product.ts";
 import SaleRouter from "./routes/sale.ts";
+import AuthRouter from "./routes/auth.ts";
 import { configDotenv } from "dotenv";
 const port = 3000;
 
@@ -29,6 +30,7 @@ app.use(
 app.use("/api/users", UserRouter);
 app.use("/api/products", ProductRouter);
 app.use("/api/sales", SaleRouter);
+app.use("/api/auth", AuthRouter);
 
 app.listen(port, () => {
   console.log(`Listening in port ${port}`);
