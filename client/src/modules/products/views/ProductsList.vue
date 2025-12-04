@@ -1,5 +1,5 @@
 <template>
-  <NavBar />
+  <NavBar selected="products" />
   <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-8">
     <div class="max-w-5xl mx-auto">
       <!-- Header -->
@@ -25,7 +25,7 @@
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-          Crear Nuevo
+          Crear Producto
         </button>
       </div>
 

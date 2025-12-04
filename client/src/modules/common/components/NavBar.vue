@@ -11,6 +11,10 @@ const onLogout = () => {
   toast.success('Cierre de sesion exitoso')
   router.replace('/auth')
 }
+
+defineProps<{
+  selected: 'sales' | 'products' | 'users'
+}>()
 </script>
 
 <template>
@@ -19,9 +23,15 @@ const onLogout = () => {
       <h1 class="text-2xl">POS - Abarrotes</h1>
     </div>
     <ul class="flex gap-5">
-      <li><RouterLink :to="{ name: 'home' }">Ventas</RouterLink></li>
-      <li><RouterLink :to="{ name: 'products' }">Productos</RouterLink></li>
-      <!-- <li><RouterLink :to="{ name: 'users' }">Users</RouterLink></li> -->
+      <li :class="{ 'font-bold': selected === 'sales' }">
+        <RouterLink :to="{ name: 'home' }">Ventas</RouterLink>
+      </li>
+      <li :class="{ 'font-bold': selected === 'products' }">
+        <RouterLink :to="{ name: 'products' }">Productos</RouterLink>
+      </li>
+      <li :class="{ 'font-bold': selected === 'users' }">
+        <RouterLink :to="{ name: 'users' }">Users</RouterLink>
+      </li>
     </ul>
     <div>
       <button @click="onLogout" type="button" class="bg-red-500 text-white py-2 px-4 rounded-lg">

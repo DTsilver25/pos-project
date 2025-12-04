@@ -1,11 +1,11 @@
 <template>
-  <NavBar selected="sales" />
+  <NavBar selected="users" />
   <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-8">
     <div class="max-w-5xl mx-auto">
       <!-- Header -->
       <div class="flex justify-between items-center mb-6">
         <div>
-          <h1 class="text-3xl font-bold text-slate-800">Registros de Venta</h1>
+          <h1 class="text-3xl font-bold text-slate-800">Usuarios</h1>
           <p class="text-slate-600 mt-1">Total de registros: {{ data.length }}</p>
         </div>
         <RouterLink>
@@ -25,7 +25,7 @@
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            Crear Venta
+            Crear Usuario
           </span>
         </RouterLink>
       </div>
@@ -37,13 +37,13 @@
             <thead>
               <tr class="bg-gradient-to-r from-slate-800 to-slate-700 text-white">
                 <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                  #
+                  Nombre
                 </th>
                 <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
                   Fecha
                 </th>
                 <th class="px-6 py-4 text-right text-sm font-semibold uppercase tracking-wider">
-                  Total
+                  Rol
                 </th>
               </tr>
             </thead>
@@ -54,17 +54,13 @@
                 class="hover:bg-blue-50 transition-colors duration-150 cursor-pointer"
               >
                 <td class="px-6 py-4 text-slate-700 font-medium">
-                  {{ item.id }}
+                  {{ item.username }}
                 </td>
                 <td class="px-6 py-4 text-slate-700 font-medium">
                   {{ item.createdAt.toLocaleDateString() }}
                 </td>
                 <td class="px-6 py-4 text-right">
-                  <span
-                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-800"
-                  >
-                    ${{ item.total.toFixed(2) }}
-                  </span>
+                  {{ item.role }}
                 </td>
               </tr>
             </tbody>
@@ -159,14 +155,14 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue'
-import { getSales } from '../actions/getSales'
-import type { Sale } from '../interfaces/sale'
 import NavBar from '@/modules/common/components/NavBar.vue'
+import { getUsers } from '../actions/getUsers'
+import type { User } from '../interfaces/user'
 
 const currentPage = ref(1)
 const itemsPerPage = ref(5)
 
-const data = ref<Sale[]>([])
+const data = ref<User[]>([])
 
 const totalPages = computed(() => {
   return Math.ceil(data.value.length / itemsPerPage.value)
@@ -201,8 +197,7 @@ const setCurrentPage = (page) => {
 }
 
 onMounted(async () => {
-  const { sales } = await getSales()
-  data.value = sales
-  console.log(data.value)
+  const users: User[] = await getUsers()
+  data.value = users
 })
 </script>
