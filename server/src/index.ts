@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import UserRouter from "./routes/user.ts";
+import ProductRouter from "./routes/product.ts";
 import { configDotenv } from "dotenv";
 const port = 3000;
 
@@ -25,6 +26,7 @@ app.use(
 );
 
 app.use("/api/users", UserRouter);
+app.use("/api/products", ProductRouter);
 
 app.listen(port, () => {
   console.log(`Listening in port ${port}`);
