@@ -5,29 +5,28 @@
       <!-- Header -->
       <div class="flex justify-between items-center mb-6">
         <div>
-          <h1 class="text-3xl font-bold text-slate-800">Registros de Venta</h1>
+          <h1 class="text-3xl font-bold text-slate-800">Productos</h1>
           <p class="text-slate-600 mt-1">Total de registros: {{ data.length }}</p>
         </div>
-        <RouterLink>
-          <span
-            class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium shadow-lg shadow-blue-500/30 transition-all duration-200 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105"
+        <button
+          @click="handleCreate"
+          class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium shadow-lg shadow-blue-500/30 transition-all duration-200 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-            Crear Venta
-          </span>
-        </RouterLink>
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Crear Nuevo
+        </button>
       </div>
 
       <!-- Tabla -->
@@ -37,10 +36,7 @@
             <thead>
               <tr class="bg-gradient-to-r from-slate-800 to-slate-700 text-white">
                 <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                  #
-                </th>
-                <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                  Fecha
+                  Nombre
                 </th>
                 <th class="px-6 py-4 text-right text-sm font-semibold uppercase tracking-wider">
                   Total
@@ -54,16 +50,13 @@
                 class="hover:bg-blue-50 transition-colors duration-150 cursor-pointer"
               >
                 <td class="px-6 py-4 text-slate-700 font-medium">
-                  {{ item.id }}
-                </td>
-                <td class="px-6 py-4 text-slate-700 font-medium">
-                  {{ item.createdAt.toLocaleDateString() }}
+                  {{ item.name }}
                 </td>
                 <td class="px-6 py-4 text-right">
                   <span
                     class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-800"
                   >
-                    ${{ item.total.toFixed(2) }}
+                    ${{ item.price }}
                   </span>
                 </td>
               </tr>
@@ -157,16 +150,16 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { getSales } from '../actions/getSales'
-import type { Sale } from '../interfaces/sale'
+import { getProducts } from '../actions/getProducts'
+import type { Product } from '../interfaces/product'
 import NavBar from '@/modules/common/components/NavBar.vue'
 
 const currentPage = ref(1)
 const itemsPerPage = ref(5)
 
-const data = ref<Sale[]>([])
+const data = ref<Product[]>([])
 
 const totalPages = computed(() => {
   return Math.ceil(data.value.length / itemsPerPage.value)
@@ -200,9 +193,15 @@ const setCurrentPage = (page) => {
   currentPage.value = page
 }
 
+const handleCreate = () => {
+  alert('Crear nuevo registro')
+  // Aquí puedes agregar tu lógica para crear un nuevo registro
+  // Por ejemplo: emit('create') o abrir un modal
+}
+
 onMounted(async () => {
-  const { sales } = await getSales()
-  data.value = sales
-  console.log(data.value)
+  const products = await getProducts()
+  data.value = products
+  console.log(products)
 })
 </script>
