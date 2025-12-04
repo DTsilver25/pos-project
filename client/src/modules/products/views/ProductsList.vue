@@ -155,6 +155,7 @@ import { ref, computed, onMounted } from 'vue'
 import { getProducts } from '../actions/getProducts'
 import type { Product } from '../interfaces/product'
 import NavBar from '@/modules/common/components/NavBar.vue'
+import router from '@/router'
 
 const currentPage = ref(1)
 const itemsPerPage = ref(5)
@@ -194,9 +195,7 @@ const setCurrentPage = (page) => {
 }
 
 const handleCreate = () => {
-  alert('Crear nuevo registro')
-  // Aquí puedes agregar tu lógica para crear un nuevo registro
-  // Por ejemplo: emit('create') o abrir un modal
+  router.push({ name: 'create-products' })
 }
 
 onMounted(async () => {

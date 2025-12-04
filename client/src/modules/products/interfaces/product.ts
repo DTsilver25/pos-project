@@ -14,6 +14,13 @@ export interface ProductDTO {
   stock: number
 }
 
+export interface ProductRequest {
+  name: string
+  price: number
+  stock: number
+  description: string
+}
+
 export const fromBackendToFrontend = (product: ProductDTO): Product => {
   return {
     description: product.description,

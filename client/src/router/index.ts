@@ -4,6 +4,7 @@ import ProductsList from '@/modules/products/views/ProductsList.vue'
 import UsersList from '@/modules/users/views/UsersList.vue'
 import CreateUser from '@/modules/users/views/CreateUser.vue'
 import CreateSale from '@/modules/sales/views/CreateSale.vue'
+import ProductCreate from '@/modules/products/views/ProductCreate.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,12 @@ const router = createRouter({
       path: '/products',
       name: 'products',
       component: ProductsList,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/products/create',
+      name: 'create-products',
+      component: ProductCreate,
       meta: { requiresAuth: true },
     },
     {

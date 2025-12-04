@@ -30,7 +30,7 @@ defineProps<{
         <RouterLink :to="{ name: 'products' }">Productos</RouterLink>
       </li>
       <li :class="{ 'font-bold': selected === 'users' }">
-        <RouterLink :to="{ name: 'users' }">Users</RouterLink>
+        <RouterLink :to="{ name: 'users' }">Usuarios</RouterLink>
       </li>
     </ul>
     <div>
