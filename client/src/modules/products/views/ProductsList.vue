@@ -202,6 +202,5 @@ const handleCreate = () => {
 onMounted(async () => {
   const products = await getProducts()
   data.value = products
-  console.log(products)
 })
 </script>

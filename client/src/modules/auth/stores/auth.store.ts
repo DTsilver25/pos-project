@@ -13,7 +13,6 @@ export const useAuthStore = defineStore('auth', () => {
       if (!loginResponse.ok) {
         return false
       }
-      console.log(loginResponse.user)
       user.value = loginResponse.user
       authStatus.value = AuthStatus.Authenticated
       return true
@@ -31,7 +30,6 @@ export const useAuthStore = defineStore('auth', () => {
       authStatus.value = AuthStatus.Authenticated
       return true
     } catch (error) {
-      console.log(error)
       return logout()
     }
   }

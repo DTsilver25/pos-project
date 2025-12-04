@@ -8,7 +8,7 @@
           <h1 class="text-3xl font-bold text-slate-800">Usuarios</h1>
           <p class="text-slate-600 mt-1">Total de registros: {{ data.length }}</p>
         </div>
-        <RouterLink>
+        <RouterLink :to="{ name: 'create-user' }">
           <span
             class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium shadow-lg shadow-blue-500/30 transition-all duration-200 hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105"
           >

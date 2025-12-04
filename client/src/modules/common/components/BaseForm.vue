@@ -163,7 +163,6 @@ const valorInventario = computed(() => {
 })
 
 const handleSubmit = () => {
-  console.log('Guardar producto:', formData.value)
   alert(
     `Producto guardado:\n\nNombre: ${formData.value.nombre}\nStock: ${formData.value.stock}\nPrecio: $${formData.value.precio}\nDescripción: ${formData.value.descripcion}`,
   )
@@ -174,7 +173,6 @@ const handleSubmit = () => {
 
 const handleDelete = () => {
   if (confirm('¿Está seguro que desea eliminar este producto?')) {
-    console.log('Eliminar producto')
     alert('Producto eliminado')
 
     // Limpiar formulario

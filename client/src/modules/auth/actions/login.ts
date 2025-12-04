@@ -17,7 +17,6 @@ export const loginAction = async (
   username: string,
   password: string,
 ): Promise<LoginError | LoginSuccess> => {
-  console.log(username, password)
   try {
     const { data } = await api.post<LoginResponse>('/api/auth/verify-user', {
       username,
@@ -29,7 +28,6 @@ export const loginAction = async (
       message: data.message,
     }
   } catch (error) {
-    console.log(error)
     if (isAxiosError(error) && error.status === 401) {
       return {
         ok: false,

@@ -27,7 +27,6 @@ const onLogin = async () => {
     localStorage.removeItem('username')
   }
   const ok = await authStore.login(myForm.username, myForm.password)
-  console.log(ok)
   if (ok) {
     router.replace('/')
     toast.success('Usuario autenticado correctamente')
@@ -81,8 +80,4 @@ watchEffect(() => {
       Iniciar sesion
     </button>
   </form>
-  <!-- Sign up  Link -->
-  <div class="mt-6 text-blue-500 text-center">
-    <RouterLink :to="{ name: 'register' }" class="hover:underline">Crear cuenta aqui</RouterLink>
-  </div>
 </template>

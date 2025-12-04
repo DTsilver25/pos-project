@@ -25,7 +25,6 @@ export const registerAction = async (
     })
     return { ok: true, user: data.user, token: data.token }
   } catch (error) {
-    console.log(error)
     return {
       ok: false,
       message: 'Ha ocurrido un error',
