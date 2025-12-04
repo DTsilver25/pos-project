@@ -3,11 +3,11 @@ import { createPinia } from 'pinia'
 import './css/main.css'
 import App from './App.vue'
 import router from './router'
-import Toast from 'vue-toastification'
+import Toast, { POSITION } from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-app.use(Toast)
+app.use(Toast, { position: POSITION.BOTTOM_RIGHT })
 app.mount('#app')

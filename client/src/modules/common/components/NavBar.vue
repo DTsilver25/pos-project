@@ -8,8 +8,8 @@ const toast = useToast()
 
 const onLogout = () => {
   authStore.logout()
+  router.push('/auth')
   toast.success('Cierre de sesion exitoso')
-  router.replace('/auth')
 }
 
 defineProps<{
