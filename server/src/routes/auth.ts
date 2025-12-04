@@ -3,5 +3,5 @@ import verifyUser from "../controllers/user/auth.ts";
 
 const router = Router();
 
-router.get("/verify-user", verifyUser);
+router.post("/verify-user", verifyUser);
 export default router;

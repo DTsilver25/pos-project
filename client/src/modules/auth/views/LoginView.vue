@@ -2,6 +2,7 @@
 import { reactive, ref, watchEffect } from 'vue'
 import { useAuthStore } from '../stores/auth.store'
 import { useToast } from 'vue-toastification'
+import router from '@/router'
 
 const authStore = useAuthStore()
 const usernameInputRef = ref<HTMLInputElement | null>(null)
@@ -23,32 +24,37 @@ const onLogin = async () => {
   if (myForm.username) {
     localStorage.setItem('username', myForm.username)
   } else {
-    localStorage.removeItem('email')
+    localStorage.removeItem('username')
   }
   const ok = await authStore.login(myForm.username, myForm.password)
-  if (ok) return
+  console.log(ok)
+  if (ok) {
+    router.replace('/')
+    toast.success('Usuario autenticado correctamente')
+    return
+  }
   toast.error('Usuario/Contraseña no son correctos')
 }
 
 watchEffect(() => {
-  const email = localStorage.getItem('email')
-  if (email) {
-    myForm.username = email
+  const username = localStorage.getItem('username')
+  if (username) {
+    myForm.username = username
   }
 })
 </script>
 
 <template>
   <h1 class="text-2xl font-semibold mb-4">Login</h1>
-  <form action="#" @submit.prevent="onLogin" method="POST">
+  <form @submit.prevent="onLogin" method="POST">
     <!-- Username Input -->
     <div class="mb-4">
-      <label for="email" class="block text-gray-600">Correo</label>
+      <label for="username" class="block text-gray-600">Nombre de usuario</label>
       <input
-        ref="emailInputRef"
+        ref="usernameInputRef"
         type="text"
-        id="email"
-        name="email"
+        id="username"
+        name="username"
         v-model="myForm.username"
         class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
         autocomplete="off"

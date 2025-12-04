@@ -19,7 +19,9 @@ const verifyUser = async (req: Request, res: Response) => {
       user.rows[0].password
     );
     if (isPasswordCorrect) {
-      res.status(200).json({ message: "Inicio de sesion exitoso" });
+      res
+        .status(200)
+        .json({ message: "Inicio de sesion exitoso", user: user.rows[0] });
       return;
     }
     res.status(404).json({ message: "Credenciales invalidas" });
